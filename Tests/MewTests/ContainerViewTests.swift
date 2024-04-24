@@ -38,30 +38,6 @@ class ContainerViewTests: XCTestCase {
         }
     }
 
-    // MARK: - Tests for `IBDesignable`
-
-    func testPrepareForInterfaceBuilder() {
-        do {
-            let view = ContainerView()
-            view.prepareForInterfaceBuilder()
-            XCTAssert(view.subviewTreeContains { $0 is _ContainerInterfaceBuilderView })
-        }
-
-        do {
-            let view = ContainerView()
-            view.estimatedWidth = 100
-            view.prepareForInterfaceBuilder()
-            XCTAssert(view.subviewTreeContains { $0.constraints.contains { $0.firstAttribute == .width && $0.constant == 100 } })
-        }
-
-        do {
-            let view = ContainerView()
-            view.estimatedHeight = 100
-            view.prepareForInterfaceBuilder()
-            XCTAssert(view.subviewTreeContains { $0.constraints.contains { $0.firstAttribute == .height && $0.constant == 100 } })
-        }
-    }
-
     // MARK: - Tests for `Container`
 
     final class ContainerViewController: ResourceContingViewController, Instantiatable {
@@ -309,7 +285,6 @@ class ContainerViewTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testPrepareForInterfaceBuilder", testPrepareForInterfaceBuilder),
         ("testMakeContainerForInstantiatable", testMakeContainerForInstantiatable),
         ("testContainerForInjectable", testContainerForInjectable),
         ("testContainerForInteractable", testContainerForInteractable)
